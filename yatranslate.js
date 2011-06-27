@@ -6,6 +6,11 @@
  *            and this translated text will be passed as first argument of this callback
  */
 window['yaTranslate'] = function(text, originLang, targetLang, callback) {
+  var langs = {'en': {'ru': 1<<0}, 'ru': {'en':1<<1, 'ua':1<<2}, 'ua': {'ru':1<<3}};
+  if (typeof window['console'] == 'undefined') {
+    console = {warn: function() {}};
+  }
+  
   if (arguments.length < 4) {
     console.warn('Function yaTranslate accept 4 arguments:\
     \n1. text — Text that need to translate\
@@ -13,6 +18,11 @@ window['yaTranslate'] = function(text, originLang, targetLang, callback) {
     \n3. targetLang — In which language text would be translated\
     \n4. callback — Callback which will be invoked when the text would be translated\
  and this translated text will be passed as first argument of this callback');
+    return;
+  }
+  
+  if (!langs[originLang] || !(targetLang in langs[originLang])) {
+    console.warn('Yandex Translate can not produce translation from "' + originLang + '" to "' + targetLang + '"');
     return;
   }
   
