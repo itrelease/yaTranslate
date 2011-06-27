@@ -6,7 +6,7 @@
  *            and this translated text will be passed as first argument of this callback
  */
 window['yaTranslate'] = function(text, originLang, targetLang, callback) {
-  var langs = {'en': {'ru': 1<<0}, 'ru': {'en':1<<1, 'ua':1<<2}, 'ua': {'ru':1<<3}};
+  var langs = {'en': {'ru': 1<<0}, 'ru': {'en':1<<1, 'uk':1<<2}, 'uk': {'ru':1<<3}};
   if (typeof window['console'] == 'undefined') {
     console = {warn: function() {}};
   }
